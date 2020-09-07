@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    build: .
+    volumes:
+      - ./log:/log
+    ports:
+     - "10127:10127"
+    environment:
+      - VIRTUAL_HOST=labstatus.fablab-karlsruhe.de
+      - VIRTUAL_NETWORK=nginx-proxy
+      - VIRTUAL_PORT=10127
+      - LETSENCRYPT_HOST=labstatus.fablab-karlsruhe.de
+      - LETSENCRYPT_EMAIL=admin@fablab-karlsruhe.de
+
+networks:
+  default:
+    external:
+      name: webproxy
